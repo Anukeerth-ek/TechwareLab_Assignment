@@ -1,0 +1,94 @@
+.logoStrip {
+  background: #2d2d2d;
+  padding: 1.5rem 0;
+  overflow: hidden;
+  position: relative;
+
+  &__track {
+    width: 100%;
+    overflow: hidden;
+  }
+
+  &__content {
+    display: flex;
+    gap: 4rem;
+    animation: scroll 30s linear infinite;
+    width: max-content;
+
+    &:hover {
+      animation-play-state: paused;
+    }
+  }
+
+  &__item {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 160px;
+    flex-shrink: 0;
+  }
+
+  &__logo {
+    width: auto;
+    height: auto;
+    max-width: 140px;
+    max-height: 32px;
+    object-fit: contain;
+    filter: brightness(0) invert(1);
+    opacity: 0.9;
+    transition: opacity 0.3s ease;
+
+    &:hover {
+      opacity: 1;
+    }
+  }
+}
+
+@keyframes scroll {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
+}
+
+@media (max-width: 768px) {
+  .logoStrip {
+    padding: 1.25rem 0;
+
+    &__content {
+      gap: 3rem;
+      animation-duration: 25s;
+    }
+
+    &__item {
+      min-width: 120px;
+    }
+
+    &__logo {
+      max-width: 110px;
+      max-height: 28px;
+    }
+  }
+}
+
+@media (max-width: 480px) {
+  .logoStrip {
+    padding: 1rem 0;
+
+    &__content {
+      gap: 2.5rem;
+      animation-duration: 20s;
+    }
+
+    &__item {
+      min-width: 100px;
+    }
+
+    &__logo {
+      max-width: 90px;
+      max-height: 24px;
+    }
+  }
+}
