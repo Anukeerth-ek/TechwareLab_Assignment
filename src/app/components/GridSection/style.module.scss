@@ -1,10 +1,10 @@
 .showcase {
   background: #000;
-  padding: 4rem 2rem;
-  min-height: 60vh;
+  padding: 4rem 4rem 6rem;
   display: flex;
   align-items: center;
   justify-content: center;
+  min-height: 60vh;
 
   &__container {
     max-width: 1200px;
@@ -12,14 +12,15 @@
     margin: 0 auto;
   }
 
+  /* ===== GRID layout ===== */
   &__grid {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     grid-template-rows: repeat(2, 1fr);
     gap: 1.5rem;
-    
   }
 
+  /* ===== CARD ===== */
   &__card {
     background: rgba(255, 255, 255, 0.05);
     border: 1px solid rgba(255, 255, 255, 0.1);
@@ -30,39 +31,49 @@
     align-items: center;
     justify-content: center;
     gap: 1.5rem;
-    transition: all 0.3s ease;
     position: relative;
     overflow: hidden;
     backdrop-filter: blur(10px);
+    transition: all 0.4s ease-in-out;
+    transform: translateY(0) scale(1);
 
     &::before {
-      content: '';
+      content: "";
       position: absolute;
       inset: 0;
       border-radius: 1.5rem;
       padding: 1px;
       background: linear-gradient(
         135deg,
-        rgba(255, 255, 255, 0.1),
+        rgba(255, 255, 255, 0.2),
         rgba(255, 255, 255, 0.05)
       );
-      -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
-      -webkit-mask-composite: xor;
-      mask-composite: exclude;
       opacity: 0;
-      transition: opacity 0.3s ease;
+      transition: opacity 0.4s ease;
     }
 
     &:hover {
+      transform: translateY(-6px) scale(1.03);
       background: rgba(255, 255, 255, 0.08);
-      border-color: rgba(255, 255, 255, 0.2);
-      transform: translateY(-4px);
+      border-color: rgba(255, 255, 255, 0.25);
+      box-shadow: 0 10px 25px rgba(255, 255, 255, 0.08);
 
       &::before {
         opacity: 1;
       }
+
+      .showcase__subtitle {
+        color: #fff;
+        transform: scale(1.05);
+        letter-spacing: 0.2em;
+      }
+
+      .showcase__image {
+        filter: brightness(1.3) invert(0.9);
+      }
     }
 
+    /* === Bento-style placement === */
     &:nth-child(1) {
       grid-column: 1;
       grid-row: 1;
@@ -91,47 +102,75 @@
     }
   }
 
+  /* ===== Inner Elements ===== */
   &__logo {
     display: flex;
     align-items: center;
     justify-content: center;
     width: 100%;
-    height: 100%;
-    flex: 1;
   }
 
   &__image {
-    width: auto;
-    height: auto;
     max-width: 100%;
     max-height: 80px;
     object-fit: contain;
-    filter: brightness(0) invert(1); 
+    filter: brightness(0) invert(1);
     opacity: 0.9;
-    transition: opacity 0.3s ease;
-
-    .showcase__card:hover & {
-      opacity: 1;
-    }
+    transition: all 0.4s ease;
   }
 
   &__subtitle {
-    color: rgba(255, 255, 255, 0.4);
-    font-size: 0.75rem;
+    color: rgba(255, 255, 255, 0.5);
+    font-size: 0.85rem;
     font-weight: 600;
     letter-spacing: 0.1em;
     text-transform: uppercase;
     margin: 0;
+    transition: all 0.4s ease;
   }
 }
 
+/* ====== RESPONSIVE BREAKPOINTS ====== */
+
+/* ✅ Laptops / Tablets (≤1024px) */
 @media (max-width: 1024px) {
   .showcase {
+    padding: 3rem 2rem;
+
     &__grid {
+      grid-template-columns: repeat(2, 1fr);
+      grid-template-rows: auto;
       gap: 1.25rem;
     }
 
     &__card {
+      padding: 2rem;
+    }
+
+    &__card--featured {
+      grid-column: 1 / 3;
+      grid-row: auto;
+    }
+
+    &__image {
+      max-height: 70px;
+    }
+  }
+}
+
+/* ✅ Tablets / Large Phones (≤768px) */
+@media (max-width: 768px) {
+  .showcase {
+    padding: 3rem 1.5rem;
+
+    &__grid {
+      grid-template-columns: 1fr;
+      gap: 1rem;
+    }
+
+    &__card {
+      grid-column: auto;
+      grid-row: auto;
       padding: 2rem;
     }
 
@@ -141,35 +180,7 @@
   }
 }
 
-@media (max-width: 768px) {
-  .showcase {
-    padding: 3rem 1.5rem;
-
-    &__grid {
-      grid-template-columns: 1fr;
-      grid-template-rows: auto;
-      gap: 1rem;
-    }
-
-    &__card {
-      padding: 2rem;
-      
-      &:nth-child(1),
-      &--featured,
-      &:nth-child(3),
-      &:nth-child(4),
-      &:nth-child(5) {
-        grid-column: 1;
-        grid-row: auto;
-      }
-    }
-
-    &__image {
-      max-height: 50px;
-    }
-  }
-}
-
+/* ✅ Small Phones (≤480px) */
 @media (max-width: 480px) {
   .showcase {
     padding: 2rem 1rem;
@@ -177,6 +188,10 @@
     &__card {
       padding: 1.5rem;
       gap: 1rem;
+    }
+
+    &__image {
+      max-height: 50px;
     }
 
     &__subtitle {

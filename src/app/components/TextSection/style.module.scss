@@ -4,17 +4,20 @@
   justify-content: center;
   align-items: center;
   padding: 5rem 2rem;
-  min-height: 100vh;
+  overflow: hidden;
 }
 
 .textBlock {
-  max-width: 750px;
-  line-height: 1.6;
+  width: 900px;
   font-family: "Inter", sans-serif;
+  opacity: 0;
+  transform: translateY(40px);
+  transition: opacity 0.8s ease, transform 0.8s ease;
 
   p {
-    font-size: 1.2rem;
+    font-size: 40px;
     font-weight: 400;
+    line-height: 1.4;
   }
 
   .boldWhite {
@@ -23,7 +26,39 @@
   }
 
   .grayText {
-    color: #555;
+    color: #888;
     font-weight: 500;
+  }
+}
+
+/* 👇 Scroll animation states */
+.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.hidden {
+  opacity: 0;
+  transform: translateY(40px);
+}
+
+/* 📱 Responsive */
+@media (max-width: 1024px) {
+  .textBlock {
+    width: 700px;
+
+    p {
+      font-size: 32px;
+    }
+  }
+}
+
+@media (max-width: 768px) {
+  .textBlock {
+    width: 100%;
+
+    p {
+      font-size: 24px;
+    }
   }
 }

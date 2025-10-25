@@ -3,14 +3,14 @@ import styles from './style.module.scss'
 
 const MarqueeSection = () => {
   const logos = [
-    { id: 1, src: '/images/logos/logo-1.png', alt: 'Logoipsum' },
-    { id: 2, src: '/images/logos/logo-2.png', alt: 'Logoipsum' },
-    { id: 3, src: '/images/logos/logo-3.png', alt: 'Logoipsum' },
-    { id: 4, src: '/images/logos/logo-4.png', alt: 'Logoipsum' },
-    { id: 5, src: '/images/logos/logo-5.png', alt: 'Logoipsum' },
-    { id: 6, src: '/images/logos/logo-6.png', alt: 'Logoipsum' },
-    { id: 7, src: '/images/logos/logo-7.png', alt: 'Logoipsum' },
-    { id: 8, src: '/images/logos/logo-8.png', alt: 'Logoipsum' },
+    { id: 1, src: '/marquee-1.png', alt: 'Logoipsum' },
+    { id: 2, src: '/marquee-2.png', alt: 'Logoipsum' },
+    { id: 3, src: '/marquee-3.png', alt: 'Logoipsum' },
+    { id: 4, src: '/marquee-1.png', alt: 'Logoipsum' },
+    { id: 5, src: '/marquee-2.png', alt: 'Logoipsum' },
+    { id: 6, src: '/marquee-3.png', alt: 'Logoipsum' },
+    { id: 7, src: '/marquee-1.png', alt: 'Logoipsum' },
+    { id: 8, src: '/marquee-2.png', alt: 'Logoipsum' },
   ];
 
   return (

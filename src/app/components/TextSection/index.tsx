@@ -1,8 +1,43 @@
-import styles from './style.module.scss'
+"use client";
+import { useEffect, useRef, useState } from "react";
+import styles from "./style.module.scss";
+
 const TextSection = () => {
+  const textRef = useRef<HTMLDivElement | null>(null);
+  const [isVisible, setIsVisible] = useState(false);
+
+  useEffect(() => {
+    const el = textRef.current;
+    if (!el) return;
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          // Fade in when visible, fade out when not visible
+          if (entry.isIntersecting) {
+            setIsVisible(true);
+          } else {
+            setIsVisible(false);
+          }
+        });
+      },
+      {
+        threshold: 0.2, // triggers when 20% of the text is visible
+      }
+    );
+
+    observer.observe(el);
+    return () => observer.disconnect();
+  }, []);
+
   return (
- <section className={styles.heroSection}>
-      <div className={styles.textBlock}>
+    <section className={styles.heroSection}>
+      <div
+        ref={textRef}
+        className={`${styles.textBlock} ${
+          isVisible ? styles.visible : styles.hidden
+        }`}
+      >
         <p>
           <span className={styles.boldWhite}>
             We build cutting-edge AI solutions that help businesses automate
@@ -16,7 +51,7 @@ const TextSection = () => {
         </p>
       </div>
     </section>
-  )
-}
+  );
+};
 
-export default TextSection
+export default TextSection;
